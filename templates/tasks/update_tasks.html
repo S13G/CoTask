@@ -1,0 +1,26 @@
+{% extends 'layout.html' %} {% load static %} {% block content %}<title>
+  Update Tasks</title
+>{% endblock content %} {% block body %}
+<main class="formPage my-sm">
+  <div class="content-box">
+    <div class="formWrapper">
+      <button class="btn btn-back" type="button">
+        <a href="{% url 'tasks-list' %}">Back</a>
+      </button>
+      <br />
+      <br />
+      <h1>Update Task</h1>
+      <form method="POST" , action="" enctype="multipart/form-data">
+        {% csrf_token %} {% for field in form %}
+        <div class="form__field">
+          <label for="formInput#text">{{ field.label }}</label>
+          <div class="textarea">{{ field }}</div>
+          <div class="mark-down">{{ field.completed }}</div>
+        </div>
+        {% endfor %}
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock body %}

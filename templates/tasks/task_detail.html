@@ -1,0 +1,53 @@
+{% extends 'layout.html' %} {% load static %} {% block content %}<title>
+  Task Detail</title
+>{% endblock content %} {% block body %}
+<main class="formPage my-sm">
+  <div class="content-box">
+    <div class="formWrapper">
+      <button class="btn btn-back" type="button">
+        <a href="{% url 'tasks-list' %}">Back</a>
+      </button>
+      {% if not task.completed %}
+      <div class="edit-button">
+        <a href="{% url 'update-tasks' task.id %}"
+          ><img src="{% static 'icons/edit.png' %}" alt=""
+        /></a>
+      </div>
+      {% elif task.completed %}
+      <button class="btn btn-completed">Task Completed</button>
+      {% endif %}
+      <br />
+      <br />
+      <h1>Task Details</h1>
+      <br />
+      <h3>Title</h3>
+      <ul class="task-title">
+        <li>{{ task.title }}</li>
+      </ul>
+      <br />
+      <h3>Description</h3>
+      <ul class="task-title">
+        {% if not task.description %}
+        <li>No description added</li>
+        {% else %}
+        <li>{{ task.description }}</li>
+        {% endif %}
+      </ul>
+      <br />
+      <h3>Date Added</h3>
+      <ul class="task-title">
+        <li>{{ task.current_date }}</li>
+      </ul>
+      <br />
+      <h3>Date Completed</h3>
+      <ul class="task-title">
+        {% if task.completed %}
+        <li>{% now "F d, Y" %}</li>
+        {% else %}
+        <li>Task not yet completed</li>
+        {% endif %}
+      </ul>
+    </div>
+  </div>
+</main>
+{% endblock body %}

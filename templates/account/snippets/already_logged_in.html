@@ -1,0 +1,8 @@
+{% extends 'account/base.html' %} {% load static %} {% load account %}
+{% block head %}
+<title>Password Reset</title>
+{% endblock head %} {% block body %} {% block date %} {% endblock date %}
+{% user_display user as user_display %}
+<p><strong>Note: </strong>You are already logged in as {{ user_display }}.</p>
+
+{% endblock body %}

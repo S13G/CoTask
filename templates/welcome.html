@@ -1,0 +1,31 @@
+{% extends 'layout.html' %} {% load static %} {% block body %}<title>
+  CoTask Welcome Page
+</title>
+{% block date %} {% endblock date %}
+<main class="formPage my-lg">
+  <div class="content-box2">
+    <div class="formWrapper">
+      <div class="eren">
+        <img
+          src="{% static 'images/task.png' %}"
+          class="eren-pic"
+          alt="picture"
+        />
+      </div>
+      <h1>CoTask</h1>
+      <p>Tidy your daily life with ease</p>
+      {% if user.is_authenticated %}
+      <p style="text-decoration: underline; font-family: Poppins Medium">
+        <a href="{% url 'auth' %}">Start Tidying</a>
+        {% else %}
+      </p>
+
+      <p style="text-decoration: underline; font-family: Poppins Medium">
+        <a href="{% url 'account_login' %}">Sign In</a> ||
+        <a href="{% url 'account_signup' %}">Sign Up</a>
+      </p>
+      {% endif %}
+    </div>
+  </div>
+</main>
+{% endblock body %}

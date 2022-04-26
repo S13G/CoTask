@@ -1,0 +1,50 @@
+{% extends 'socialaccount/base.html' %} {% load i18n %} {% load static %} {% block head %}
+<title>Provider Sign In</title>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="{% static 'css/style.css' %}" />
+<style>
+  body {
+    font-family: "Poppins";
+  }
+</style>
+{% endblock head %} {% block body %} {% block date %} {% endblock date %}
+
+<main class="formPage my-sm">
+  <div class="content-box3">
+    <div class="formWrapper">
+      <a href="{% url 'welcome' %}"><h1 class="brand">CoTask</h1></a>
+      {% if process == "connect" %}
+      <h1>
+        {% blocktrans with provider.name as provider %}Connect {{ provider }}{% endblocktrans %}
+      </h1>
+
+      <p>
+        {% blocktrans with provider.name as provider %}You are about to connect
+        a new third party account from {{ provider }}.{% endblocktrans %}
+      </p>
+      {% else %}
+      <h1>
+        {% blocktrans with provider.name as provider %}Sign In Via {{ provider }}{% endblocktrans %}
+      </h1>
+
+      <p>
+        {% blocktrans with provider.name as provider %}You are about to sign in
+        using a third party account from {{ provider }}.{% endblocktrans %}
+      </p>
+      {% endif %}
+
+      <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-primary btn-sm btn-block" type="submit">
+          Continue
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
+{% endblock body %}

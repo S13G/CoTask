@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+{% load socialaccount %} {% load static %}
+<html lang="en">
+  {% block head %}
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CoTask</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/alert.css' %}" />
+    <script
+      defer
+      src="https://kit.fontawesome.com/b906c06057.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  </head>
+  {% endblock head %}
+  <body>
+    <header>
+      {% block date %}
+      <nav class="navbar">
+        <a href="{% url 'welcome' %}"><h1 class="brand">CoTask</h1></a>
+      </nav>
+      <br />
+      <div class="calendar">
+        <h3 class="day">{% now "D" %}</h3>
+        <h5 class="date">{% now "F d, Y" %}</h5>
+      </div>
+      <div
+        style="font-family: 'Poppins SemiBold', 'Source Code Pro Medium', serif; margin-right: 10px; float: right"
+      >
+        <a href="{% url 'account_logout' %}">Logout</a>
+      </div>
+      {% endblock date %}
+
+      <script>
+        $(document).ready(function () {
+          $("#alert_close").click(function () {
+            $("div.man").fadeOut("slow");
+          });
+        });
+      </script>
+
+      {% comment %} {% if messages %} {% for message in messages %}
+      <div class="man">
+        <div class="alert alert--{{ message.tags }}">
+          <p class="alert__message">{{ message }}</p>
+          <button
+            id="alert_close"
+            style="border: none; background: transparent; font-size: 1rem"
+          >
+            x
+          </button>
+        </div>
+      </div>
+      {% endfor %} {% endif %} {% endcomment %} {% if messages %}
+      <div class="man">
+        <div class="alert alert--{{ message.tags }}">
+          {% for message in messages %}
+          <p class="alert__message">{{message}}</p>
+          <button
+            id="alert_close"
+            style="border: none; background: transparent; font-size: 1rem"
+          >
+            x
+          </button>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </header>
+    {% block body %} {% endblock body %}
+    <script src="{% static 'js/app.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+{% extends 'layout.html' %} {% load static %} {% block content %}
+<title>Tasks List</title>
+{% endblock content %} {% block body %}
+<main class="main">
+  {# Add New Task#}
+  <div class="new-tasks">
+    <div class="new-task n-t-head">
+      <div class="task">
+        <h3 class="task-head">Add new Tasks:</h3>
+      </div>
+      <div class="plus-btn add-btn">
+        <a href="{% url 'add-tasks' %}"
+          ><img src="{% static 'icons/plus.png' %}" class="add-icon" alt=""
+        /></a>
+      </div>
+    </div>
+    {% for task in tasks %} {% if not task.completed %}
+    <div class="new-task">
+      <div class="task">
+        <div class="plus-btn btn">
+          <img src="{% static 'icons/untick.png' %}" alt="untick" />
+        </div>
+        <a href="{% url 'task-details' task.id %}">
+          <h4 class="task-head">{{ task.title }}</h4></a
+        >
+      </div>
+      <div class="plus-btn">
+        <a href="{% url 'delete-task' task.id %}"
+          ><img src="{% static 'icons/minus.png' %}" alt=""
+        /></a>
+      </div>
+    </div>
+    {% endif %} {% empty %}
+    <div class="new-task">
+      <div class="task">
+        <div class="plus-btn btn">
+          <img src="{% static 'icons/untick.png' %}" alt="untick" />
+        </div>
+        <h4>No task added</h4>
+      </div>
+    </div>
+    {% endfor %}
+
+    <div class="spacing"></div>
+
+    {# Completed Task#}
+    <div class="new-task n-t-head">
+      <div class="task">
+        <h3 class="task-head">Completed Tasks:</h3>
+      </div>
+      <div class="plus-btn add-btn">
+        <a href="{% url 'delete-completed' %}"
+          ><img src="{% static 'icons/minus.png' %}" alt=""
+        /></a>
+      </div>
+    </div>
+
+    {% for task in tasks %} {% if task.completed %}
+    <div class="new-task">
+      <div class="completed-task">
+        <div class="plus-btn btn">
+          <img src="{% static "icons/tick.png" %}" alt="">
+        </div>
+        <a href="{% url 'task-details' task.id %}"
+          ><h4 class="task-head">{{ task.title }}</h4></a
+        >
+      </div>
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+</main>
+{% endblock body %}

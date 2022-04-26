@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}<title>Delete Task</title>{% endblock content %}
+
+{% block body %}
+    <main class="formPage my-sm">
+        <div class="content-box">
+            <div class="formWrapper">
+                <button class="btn btn-back" type="button"><a href="{% url 'tasks-list' %}">Back</a></button>
+                <br>
+                <br>
+                <h1>Delete Task</h1>
+                <form method="POST" , action="" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form__field">
+                        <p>Are you sure you want to delete "{{ object }}"?</p>
+                        <div class="textarea">
+                            {{ form }}
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock body %}
