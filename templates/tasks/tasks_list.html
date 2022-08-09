@@ -1,4 +1,6 @@
-{% extends 'layout.html' %} {% load static %} {% block content %}
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
 <title>Tasks List</title>
 {% endblock content %} {% block body %}
 <main class="main">
@@ -9,9 +11,9 @@
         <h3 class="task-head">Add new Tasks:</h3>
       </div>
       <div class="plus-btn add-btn">
-        <a href="{% url 'add-tasks' %}"
-          ><img src="{% static 'icons/plus.png' %}" class="add-icon" alt=""
-        /></a>
+        <a href="{% url 'add-tasks' %}">
+            <img src="{% static 'icons/plus.png' %}" class="add-icon" alt=""/>
+        </a>
       </div>
     </div>
     {% for task in tasks %} {% if not task.completed %}

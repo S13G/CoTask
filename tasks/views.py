@@ -1,9 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView, TemplateView
 from django.views.generic.edit import UpdateView, DeleteView
-from django.contrib.messages.views import SuccessMessageMixin
+
 from .models import Task
 
 
